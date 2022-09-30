@@ -1,14 +1,16 @@
 const express = require("express");
 const axios = require("axios");
 
-const { PORT } = process.env;
-
 const app = express();
 
-app.get("/", (req, res) => {
-  const { url } = req.query;
+const PORT = 3000;
 
-  if (!url) return res.sendStatus(400);
+app.get("/todos/:id", (req, res) => {
+  const { id } = req.params;
+
+  if (!id) return res.sendStatus(400);
+
+  const url = `https://jsonplaceholder.typicode.com/todos/${id}`;
 
   axios(url, { method: "GET" })
     .then((response) => {

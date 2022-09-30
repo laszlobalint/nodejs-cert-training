@@ -52,7 +52,7 @@ const body = async (res) => {
 async function start () {
   const server = net.createServer().listen()
   await once(server, 'listening')
-  const { port } = server.address()
+  const port = 3000
   server.close()
   await once(server, 'close')
   await writeFile(join(__dirname, 'model.js'), testingModel())
